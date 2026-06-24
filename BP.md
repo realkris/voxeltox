@@ -1,4 +1,4 @@
-# VoxelTox AI (万境生科) — Business Plan 2026
+# VoxelTox AI (沃森生科) — Business Plan 2026
 
 > **CONFIDENTIAL** — Do Not Distribute
 
@@ -8,7 +8,7 @@
 
 | | |
 |---|---|
-| **Company** | VoxelTox AI (万境生科) |
+| **Company** | VoxelTox AI (沃森生科) |
 | **Domain** | voxeltox.space |
 | **Stage** | Seed |
 | **Fundraising** | $3M–$5M |
@@ -259,4 +259,4 @@ Background in multi-modal sensor fusion and spatial computing. Expertise in Worl
 
 ---
 
-*© 2026 VoxelTox AI. All rights reserved. CONFIDENTIAL.*
+*© 2026 VoxelTox AI (沃森生科). All rights reserved. CONFIDENTIAL.*

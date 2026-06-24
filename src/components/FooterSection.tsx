@@ -61,7 +61,7 @@ export default function FooterSection() {
 
           <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-3">
             <p className="text-[11px] text-zinc-600">
-              &copy; 2026 VoxelTox AI (万境生科). All rights reserved.
+              &copy; 2026 VoxelTox AI (沃森生科). All rights reserved.
             </p>
             <p className="text-[11px] text-zinc-600">
               voxeltox.space
