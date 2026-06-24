@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Mail, GraduationCap } from "lucide-react";
+import { Mail, GraduationCap, ExternalLink } from "lucide-react";
 
 const team = [
   {
@@ -110,7 +110,7 @@ export default function TeamPage() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
                       >
-                        <Github className="w-4 h-4" />
+                        <ExternalLink className="w-4 h-4" />
                         GitHub
                       </a>
                     )}
