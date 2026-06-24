@@ -2,99 +2,95 @@
 
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { ArrowRight, Eye } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const Scene3D = dynamic(() => import("./Scene3D"), { ssr: false });
 
 export default function HeroSection() {
   return (
-    <section className="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
       <Scene3D />
 
-      {/* Strong overlay to ensure text readability */}
-      <div className="absolute inset-0 bg-[#0a0a0f]/60" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f]/40 via-transparent to-[#0a0a0f]" />
+      <div className="absolute inset-0 bg-[#09090b]/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b]/50 via-transparent to-[#09090b]" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center pt-20">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mb-8"
         >
-          <p className="text-base md:text-lg uppercase tracking-[0.3em] text-[#00f0ff] mb-6 font-mono font-bold drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]">
-            VoxelTox AI
-          </p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.03] mb-8">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-xs text-zinc-400 font-medium">Seed Stage · Actively Partnering</span>
+          </div>
         </motion.div>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black leading-[1.05] tracking-tight text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          className="text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[1.1] tracking-tight text-white"
         >
-          Predicting{" "}
-          <span className="bg-gradient-to-r from-[#00f0ff] via-[#4d7cff] to-[#39ff14] bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(0,240,255,0.4)]">
-            Molecular Reality.
+          4D Spatial Intelligence
+          <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400">
+            for Drug Discovery
           </span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="mt-8 text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          className="mt-6 text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed"
         >
-          The first platform fusing <span className="text-[#00f0ff] font-bold">World Models</span> with{" "}
-          <span className="text-[#39ff14] font-bold">LLMs</span> for 4D dynamic drug discovery.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-4 text-lg text-white/70 font-mono drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
-        >
-          Decoding the Micro-Environment with 4D Spatial Intelligence.
+          VoxelTox fuses World Models with LLMs to predict molecular binding dynamics 
+          in full 4D — replacing months of simulation with seconds of deterministic inference.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.7, delay: 0.35 }}
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <Link
             href="/technology"
-            className="group flex items-center gap-2 px-7 py-3.5 border-2 border-[#00f0ff]/60 rounded-full text-[#00f0ff] font-semibold hover:bg-[#00f0ff]/15 transition-all duration-300 text-lg"
+            className="flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors"
           >
-            <Eye className="w-5 h-5" />
-            View Architecture
+            View Our Technology
+            <ArrowRight className="w-4 h-4" />
           </Link>
           <a
-            href="#contact"
-            className="glow-button flex items-center gap-2 px-9 py-3.5 bg-gradient-to-r from-[#00f0ff] to-[#4d7cff] rounded-full text-black font-bold hover:scale-105 transition-transform duration-300 text-lg"
+            href="mailto:question@voxeltox.space"
+            className="flex items-center gap-2 px-6 py-3 border border-white/[0.12] text-sm text-zinc-300 font-medium rounded-lg hover:bg-white/[0.04] transition-colors"
           >
-            Partner with Us
-            <ArrowRight className="w-5 h-5" />
+            Schedule a Conversation
           </a>
         </motion.div>
-      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 bg-[#00f0ff] rounded-full mt-2"
-          />
-        </div>
-      </motion.div>
+        {/* Key metrics */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="mt-20 grid grid-cols-3 gap-8 max-w-lg mx-auto"
+        >
+          {[
+            { value: "4D", label: "Spatial-Temporal" },
+            { value: "10⁴×", label: "Faster than MD" },
+            { value: "$70B", label: "Market (2030)" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p className="text-2xl md:text-3xl font-bold text-white">{stat.value}</p>
+              <p className="text-[11px] text-zinc-500 mt-1 uppercase tracking-wider">{stat.label}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 }

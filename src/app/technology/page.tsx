@@ -1,67 +1,67 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Brain, Atom, Layers, ArrowRight, GitBranch, Cpu, Database, ScanEye, RefreshCcw, Zap, Network } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-const sections = [
+const modules = [
   {
-    id: "llm-engine",
-    icon: Brain,
-    color: "#00f0ff",
-    title: "1D Semantic Navigation Brain — LLM Engine",
-    description:
-      "Our fine-tuned large language model serves as the semantic reasoning backbone, responsible for parsing and understanding biological macromolecular sequences, compound structures, and global biomedical literature.",
+    id: "llm",
+    dim: "1D",
+    color: "#0ea5e9",
+    title: "Semantic Reasoning Engine",
+    subtitle: "Large Language Model",
+    description: "Fine-tuned LLM serving as the semantic reasoning backbone — parsing biological macromolecular sequences, compound structures, and global biomedical literature to generate informed molecular hypotheses.",
     details: [
       "Parses FASTA protein sequences and SMILES chemical notation",
       "Processes millions of PubMed research papers for contextual reasoning",
       "Establishes logical-semantic associations between functional targets",
       "Proposes candidate molecules based on learned biochemical principles",
-      "Provides the 'hypothesis generation' layer in our bi-directional system",
+      "Provides the hypothesis generation layer in our bi-directional system",
     ],
   },
   {
-    id: "vision-transformer",
-    icon: ScanEye,
-    color: "#ff6b35",
-    title: "2D Structural Image Understanding — Vision Transformers",
-    description:
-      "High-resolution Cryo-EM (Cryo-Electron Microscopy) images are processed by Vision Transformer architectures to extract spatial features that bridge the gap between 2D observations and 3D structural reality.",
+    id: "vision",
+    dim: "2D",
+    color: "#f97316",
+    title: "Structural Image Understanding",
+    subtitle: "Vision Transformer",
+    description: "High-resolution Cryo-EM images processed by Vision Transformer architectures to extract spatial features that bridge the gap between 2D observations and 3D structural reality.",
     details: [
       "Processes raw Cryo-EM micrographs and 2D density maps",
-      "Vision Transformer (ViT) extracts hierarchical spatial features from electron microscopy data",
+      "Hierarchical spatial feature extraction from electron microscopy data",
       "Resolves sub-angstrom structural details invisible to sequence-only methods",
       "Provides complementary 2D → 3D reconstruction priors for the World Model",
-      "Enables the system to leverage the rapidly growing Cryo-EM data repositories (EMDB)",
+      "Leverages the rapidly growing Cryo-EM data repositories (EMDB)",
     ],
   },
   {
     id: "world-model",
-    icon: Atom,
-    color: "#39ff14",
-    title: "3D/4D Spatial-Temporal Micro-Environment — World Model",
-    description:
-      "Inspired by autonomous driving's occupancy forecasting, our World Model voxelizes protein binding pockets into continuous spatial grids and predicts molecular dynamics without brute-force quantum calculations.",
+    dim: "3D/4D",
+    color: "#10b981",
+    title: "Spatial-Temporal Micro-Environment",
+    subtitle: "World Model",
+    description: "Inspired by autonomous driving occupancy forecasting — voxelizes protein binding pockets into continuous spatial grids and predicts molecular dynamics without brute-force quantum calculations.",
     details: [
       "Converts protein binding pockets into continuous spatial voxel grids",
       "Learns from massive structural evolution datasets (PDB, UniProt dynamics)",
-      "Predicts molecular spatial occupancy changes over the time dimension (3D → 4D)",
+      "Predicts molecular spatial occupancy changes over the time dimension",
       "Models conformational collapse and induced-fit dynamics",
       "Validates LLM proposals via spatial collision & energy stability testing",
     ],
   },
   {
     id: "fusion",
-    icon: Layers,
-    color: "#4d7cff",
-    title: "Unified High-Dimensional Feature Alignment — Sensor Fusion",
-    description:
-      "Cross-attention mechanisms map multi-dimensional data — 1D sequences, 2D microscopy, 3D structures, and 4D dynamics — into a shared Latent Space, enabling full-spectrum bi-directional reasoning.",
+    dim: "Unified",
+    color: "#a78bfa",
+    title: "Cross-Dimensional Feature Alignment",
+    subtitle: "Sensor Fusion Layer",
+    description: "Cross-attention mechanisms map multi-dimensional data — 1D sequences, 2D microscopy, 3D structures, and 4D dynamics — into a shared latent space, enabling full-spectrum bi-directional reasoning.",
     details: [
-      "Cross-attention mechanism aligns representations across all four data dimensions (1D/2D/3D/4D)",
-      "1D sequence logic + 2D image features + 3D/4D spatial-physical constraints → unified embedding",
-      "Shared latent space enables holistic molecular reasoning no single modality can achieve",
-      "LLM proposes → Vision verifies → World Model validates → feedback loop refines",
+      "Cross-attention aligns representations across all four data dimensions",
+      "1D logic + 2D features + 3D geometry + 4D dynamics → unified embedding",
+      "Shared latent space enables holistic reasoning no single modality can achieve",
+      "LLM proposes → Vision verifies → World Model validates → loop refines",
       "Achieves deterministic prediction rather than probabilistic screening",
     ],
   },
@@ -71,296 +71,167 @@ export default function TechnologyPage() {
   return (
     <main className="pt-24 pb-20">
       {/* Header */}
-      <section className="px-6 py-16">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="px-6 py-20">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-sm uppercase tracking-[0.2em] text-[#39ff14] mb-4 font-mono"
+            className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 mb-4"
           >
-            Deep Technical Overview
+            Technical Architecture
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold text-white leading-tight"
+            className="text-4xl md:text-5xl font-bold text-white leading-tight"
           >
-            VoxelTox Core{" "}
-            <span className="bg-gradient-to-r from-[#00f0ff] to-[#39ff14] bg-clip-text text-transparent">
-              Technology
-            </span>
+            How VoxelTox Works
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed"
+            className="mt-6 text-lg text-zinc-400 leading-relaxed"
           >
-            We break the traditional single-modality limitations by treating drug discovery
-            as a microscopic &ldquo;panoramic perception and intelligent control&rdquo; system — fusing
-            1D, 2D, 3D, and 4D data just as autonomous vehicles fuse LiDAR, cameras, and radar.
+            We treat drug discovery as a microscopic perception and control system — 
+            fusing 1D, 2D, 3D, and 4D data the way autonomous vehicles fuse
+            LiDAR, cameras, and radar for spatial understanding.
           </motion.p>
         </div>
       </section>
 
-      {/* Architecture Diagram */}
-      <section className="px-6 py-12">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="p-8 rounded-2xl border border-white/10 bg-white/[0.02] font-mono text-sm leading-loose overflow-x-auto"
-          >
-            <p className="text-gray-500 mb-4">// VoxelTox 4-Dimensional Multi-Modal Fusion Architecture</p>
-            <div className="space-y-1 text-gray-300 min-w-[500px]">
-              <p><span className="text-[#00f0ff]">[1D Sequences / Literature]</span> ──{'>'} <span className="text-gray-500">(LLM Semantic Encoding)</span> ────────┐</p>
-              <p className="text-gray-600 pl-64">│</p>
-              <p><span className="text-[#ff6b35]">[2D Cryo-EM Images]</span> ─────────{'>'} <span className="text-gray-500">(Vision Transformer)</span> ──────────┤</p>
-              <p className="text-gray-600 pl-64">├──{'>'} <span className="text-[#4d7cff]">[Shared Latent Space]</span> ──{'>'} <span className="text-[#39ff14]">Lead Compound</span></p>
-              <p><span className="text-[#39ff14]">[3D Protein Structures]</span> ───────{'>'} <span className="text-gray-500">(Spatial Voxelization)</span> ─────────┤</p>
-              <p className="text-gray-600 pl-64">│</p>
-              <p><span className="text-[#a855f7]">[4D Temporal Dynamics]</span> ────────{'>'} <span className="text-gray-500">(World Model Forecasting)</span> ───┘</p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Detailed Sections */}
-      <section className="px-6 py-12">
-        <div className="max-w-4xl mx-auto space-y-20">
-          {sections.map((sec, i) => {
-            const IconComp = sec.icon;
-            return (
+      {/* Modules */}
+      <section className="px-6 py-8">
+        <div className="max-w-3xl mx-auto space-y-16">
+          {modules.map((mod, i) => (
             <motion.div
-              key={sec.id}
-              id={sec.id}
-              initial={{ opacity: 0, y: 40 }}
+              key={mod.id}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5 }}
+              className="relative"
             >
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-start gap-4 mb-5">
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center"
-                  style={{ backgroundColor: `${sec.color}15`, border: `1px solid ${sec.color}30` }}
+                  className="shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-xs font-bold"
+                  style={{ backgroundColor: `${mod.color}15`, color: mod.color, border: `1px solid ${mod.color}25` }}
                 >
-                  <IconComp className="w-6 h-6" style={{ color: sec.color }} />
+                  {mod.dim}
                 </div>
                 <div>
-                  <p className="text-xs font-mono uppercase tracking-wider" style={{ color: sec.color }}>
-                    Module {i + 1}
-                  </p>
-                  <h2 className="text-xl md:text-2xl font-bold text-white">{sec.title}</h2>
+                  <p className="text-[10px] uppercase tracking-widest text-zinc-500">{mod.subtitle}</p>
+                  <h2 className="text-xl font-semibold text-white">{mod.title}</h2>
                 </div>
               </div>
 
-              <p className="text-gray-400 leading-relaxed mb-6 text-lg">
-                {sec.description}
+              <p className="text-zinc-400 leading-relaxed mb-5">
+                {mod.description}
               </p>
 
-              <div className="grid gap-3 pl-4 border-l-2" style={{ borderColor: `${sec.color}40` }}>
-                {sec.details.map((detail, j) => (
-                  <div key={j} className="flex items-start gap-3">
-                    <ArrowRight className="w-4 h-4 mt-0.5 shrink-0" style={{ color: sec.color }} />
-                    <p className="text-gray-300 text-sm">{detail}</p>
+              <div className="space-y-2.5 pl-3 border-l border-white/[0.06]">
+                {mod.details.map((detail, j) => (
+                  <div key={j} className="flex items-start gap-2.5">
+                    <div className="w-1 h-1 rounded-full mt-2 shrink-0" style={{ backgroundColor: mod.color }} />
+                    <p className="text-sm text-zinc-500">{detail}</p>
                   </div>
                 ))}
               </div>
             </motion.div>
-            );
-          })}
+          ))}
         </div>
       </section>
 
-      {/* Key Differentiators - Expanded */}
+      {/* Differentiators */}
       <section className="px-6 py-20">
-        <div className="max-w-5xl mx-auto">
-          <motion.h2
+        <div className="max-w-3xl mx-auto">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl font-bold text-white text-center mb-4"
+            className="mb-12"
           >
-            Key Technical Differentiators
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-gray-400 text-center mb-16 max-w-2xl mx-auto"
-          >
-            Three fundamental architectural decisions that separate VoxelTox from existing computational drug discovery approaches.
-          </motion.p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 mb-3">Key Differentiators</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              Why this approach is fundamentally different
+            </h2>
+          </motion.div>
 
-          <div className="space-y-12">
-            {/* Bi-directional Loop */}
+          <div className="space-y-8">
+            {/* Bi-directional */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="p-8 rounded-2xl border border-[#00f0ff]/15 bg-gradient-to-br from-[#00f0ff]/5 to-transparent"
+              className="p-6 rounded-xl border border-white/[0.06] bg-white/[0.015]"
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#00f0ff]/10 border border-[#00f0ff]/20">
-                  <RefreshCcw className="w-6 h-6 text-[#00f0ff]" />
-                </div>
-                <h3 className="text-xl font-bold text-white">Bi-directional Self-Correction Loop</h3>
-              </div>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                Unlike linear pipelines where a model generates once and outputs, VoxelTox implements
-                a continuous closed-loop between the LLM and World Model. The system iteratively refines
-                candidates until convergence.
+              <h3 className="text-base font-semibold text-white mb-2">Bi-directional Self-Correction</h3>
+              <p className="text-sm text-zinc-400 mb-4 leading-relaxed">
+                Unlike linear pipelines that generate once and output, VoxelTox implements a closed-loop 
+                between reasoning (LLM) and simulation (World Model), iteratively refining until convergence.
               </p>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-3">
-                  <p className="text-sm font-medium text-[#00f0ff]">How it works:</p>
-                  <ul className="space-y-2 text-sm text-gray-400">
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#00f0ff] mt-1">1.</span>
-                      LLM generates candidate molecules based on semantic understanding of target biology
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#00f0ff] mt-1">2.</span>
-                      World Model simulates the candidate in the 4D micro-environment (spatial collision, energy stability, conformational fit)
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#00f0ff] mt-1">3.</span>
-                      Failure signals are fed back to the LLM as structured constraints, narrowing the search space
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-[#00f0ff] mt-1">4.</span>
-                      The loop repeats until the World Model confirms spatial-temporal stability — eliminating false positives at the source
-                    </li>
-                  </ul>
+              <div className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.04] font-mono text-xs text-zinc-500">
+                LLM(propose) → WorldModel(simulate) → feedback → LLM(refine) → ... → converged_lead
+              </div>
+              <p className="text-xs text-zinc-500 mt-3">
+                Result: Only molecules that survive physics-grounded simulation reach the pipeline. False positive rate drops by orders of magnitude.
+              </p>
+            </motion.div>
+
+            {/* Speed */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="p-6 rounded-xl border border-white/[0.06] bg-white/[0.015]"
+            >
+              <h3 className="text-base font-semibold text-white mb-2">Learned Physics, Not Brute-Force</h3>
+              <p className="text-sm text-zinc-400 mb-4 leading-relaxed">
+                Instead of solving quantum mechanical equations for every atom, we learn molecular behavior from millions 
+                of observed structural transitions. The model develops physical intuition — predicting where atoms will be, not tracing how they got there.
+              </p>
+              <div className="grid grid-cols-3 gap-3">
+                <div className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.04] text-center">
+                  <p className="text-xs text-zinc-500">Traditional MD</p>
+                  <p className="text-sm font-medium text-zinc-300 mt-1">Days–Weeks</p>
                 </div>
-                <div className="space-y-3">
-                  <p className="text-sm font-medium text-gray-300">Result:</p>
-                  <p className="text-sm text-gray-500">
-                    Traditional virtual screening produces thousands of candidates with high false-positive rates,
-                    requiring expensive wet-lab validation. Our bi-directional loop achieves pre-validated outputs —
-                    only molecules that survive physics-grounded simulation reach the pipeline.
-                  </p>
-                  <div className="mt-4 p-3 rounded-lg bg-white/[0.03] border border-white/5 font-mono text-xs text-gray-400">
-                    LLM(propose) → WorldModel(validate) → feedback → LLM(refine) → ... → converged_lead
-                  </div>
+                <div className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.04] text-center">
+                  <p className="text-xs text-zinc-500">AlphaFold</p>
+                  <p className="text-sm font-medium text-zinc-300 mt-1">Minutes (static)</p>
+                </div>
+                <div className="p-3 rounded-lg bg-sky-500/[0.05] border border-sky-500/20 text-center">
+                  <p className="text-xs text-sky-400">VoxelTox</p>
+                  <p className="text-sm font-semibold text-white mt-1">Seconds (4D)</p>
                 </div>
               </div>
             </motion.div>
 
-            {/* No Quantum Brute-Force */}
+            {/* Multi-modal */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="p-8 rounded-2xl border border-[#39ff14]/15 bg-gradient-to-br from-[#39ff14]/5 to-transparent"
+              className="p-6 rounded-xl border border-white/[0.06] bg-white/[0.015]"
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#39ff14]/10 border border-[#39ff14]/20">
-                  <Zap className="w-6 h-6 text-[#39ff14]" />
-                </div>
-                <h3 className="text-xl font-bold text-white">No Quantum Brute-Force</h3>
-              </div>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                Traditional molecular dynamics (MD) simulations attempt to solve quantum mechanical equations
-                for every atom at every timestep — computationally prohibitive for real-world drug discovery timelines.
-                VoxelTox takes a fundamentally different approach.
+              <h3 className="text-base font-semibold text-white mb-2">Architecturally Multi-Modal</h3>
+              <p className="text-sm text-zinc-400 mb-4 leading-relaxed">
+                Biological data spans vastly different dimensionalities. Most approaches collapse high-dimensional data 
+                to fit single-modality models, losing spatial information irreversibly. VoxelTox is natively multi-dimensional.
               </p>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-3">
-                  <p className="text-sm font-medium text-[#39ff14]">Our approach:</p>
-                  <ul className="space-y-2 text-sm text-gray-400">
-                    <li className="flex items-start gap-2">
-                      <ArrowRight className="w-3 h-3 text-[#39ff14] mt-1 shrink-0" />
-                      Instead of solving Schr&ouml;dinger equations, we learn the physics directly from millions of observed structural transitions
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ArrowRight className="w-3 h-3 text-[#39ff14] mt-1 shrink-0" />
-                      The World Model develops an &ldquo;intuition&rdquo; for molecular behavior — predicting outcomes without deriving them from first principles
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ArrowRight className="w-3 h-3 text-[#39ff14] mt-1 shrink-0" />
-                      Occupancy forecasting replaces trajectory integration: we predict where atoms will be, not trace how they got there
-                    </li>
-                  </ul>
-                </div>
-                <div className="space-y-3">
-                  <p className="text-sm font-medium text-gray-300">Performance comparison:</p>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-white/[0.03] border border-white/5">
-                      <span className="text-xs text-gray-400">Traditional MD (microsecond)</span>
-                      <span className="text-xs text-red-400 font-mono">~days to weeks</span>
-                    </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-white/[0.03] border border-white/5">
-                      <span className="text-xs text-gray-400">AlphaFold (single structure)</span>
-                      <span className="text-xs text-yellow-400 font-mono">~minutes (static only)</span>
-                    </div>
-                    <div className="flex items-center justify-between p-3 rounded-lg bg-[#39ff14]/5 border border-[#39ff14]/20">
-                      <span className="text-xs text-white">VoxelTox (4D dynamics)</span>
-                      <span className="text-xs text-[#39ff14] font-mono font-bold">~seconds to minutes</span>
-                    </div>
+              <div className="grid grid-cols-4 gap-2">
+                {[
+                  { dim: "1D", label: "Sequences" },
+                  { dim: "2D", label: "Cryo-EM" },
+                  { dim: "3D", label: "Voxels" },
+                  { dim: "4D", label: "Dynamics" },
+                ].map((d) => (
+                  <div key={d.dim} className="p-3 rounded-lg bg-white/[0.02] border border-white/[0.04] text-center">
+                    <p className="text-lg font-bold text-white">{d.dim}</p>
+                    <p className="text-[10px] text-zinc-500 mt-0.5">{d.label}</p>
                   </div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Multi-Modal Native */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="p-8 rounded-2xl border border-[#4d7cff]/15 bg-gradient-to-br from-[#4d7cff]/5 to-transparent"
-            >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-[#4d7cff]/10 border border-[#4d7cff]/20">
-                  <Network className="w-6 h-6 text-[#4d7cff]" />
-                </div>
-                <h3 className="text-xl font-bold text-white">Multi-Modal Native (1D + 2D + 3D + 4D)</h3>
-              </div>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                Biological data spans vastly different dimensionalities — text sequences (1D), electron microscopy images (2D),
-                protein point clouds (3D), and temporal dynamics (4D). Most approaches handle these separately, losing critical
-                cross-dimensional correlations. VoxelTox is architecturally multi-modal from the ground up.
-              </p>
-              <div className="grid md:grid-cols-4 gap-4 mb-6">
-                <div className="p-4 rounded-lg bg-white/[0.03] border border-[#00f0ff]/20 text-center">
-                  <p className="text-2xl font-bold text-[#00f0ff]">1D</p>
-                  <p className="text-xs text-gray-500 mt-1">Sequences, SMILES, Literature Text</p>
-                </div>
-                <div className="p-4 rounded-lg bg-white/[0.03] border border-[#ff6b35]/20 text-center">
-                  <p className="text-2xl font-bold text-[#ff6b35]">2D</p>
-                  <p className="text-xs text-gray-500 mt-1">Cryo-EM Images, Density Maps</p>
-                </div>
-                <div className="p-4 rounded-lg bg-white/[0.03] border border-[#39ff14]/20 text-center">
-                  <p className="text-2xl font-bold text-[#39ff14]">3D</p>
-                  <p className="text-xs text-gray-500 mt-1">Protein Voxels, Point Clouds</p>
-                </div>
-                <div className="p-4 rounded-lg bg-white/[0.03] border border-[#a855f7]/20 text-center">
-                  <p className="text-2xl font-bold text-[#a855f7]">4D</p>
-                  <p className="text-xs text-gray-500 mt-1">Temporal Dynamics, Occupancy</p>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <p className="text-sm font-medium text-[#4d7cff]">Why native fusion matters:</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="w-3 h-3 text-[#4d7cff] mt-1 shrink-0" />
-                    <span>Traditional approaches reduce high-dimensional data to fit single-modality models (e.g., collapsing 3D to 1D fingerprints) — losing spatial information irreversibly</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="w-3 h-3 text-[#4d7cff] mt-1 shrink-0" />
-                    <span>Our cross-attention fusion preserves full fidelity of each dimension while extracting cross-modal correlations invisible to any single data type</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <ArrowRight className="w-3 h-3 text-[#4d7cff] mt-1 shrink-0" />
-                    <span>Analogous to autonomous driving: a car that only uses cameras (2D) will always underperform one that fuses LiDAR (3D) + cameras (2D) + radar (velocity) simultaneously</span>
-                  </li>
-                </ul>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -369,14 +240,14 @@ export default function TechnologyPage() {
 
       {/* CTA */}
       <section className="px-6 py-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <Link
-            href="/#contact"
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#00f0ff] to-[#4d7cff] rounded-full text-black font-bold hover:scale-105 transition-transform text-lg"
+        <div className="max-w-3xl mx-auto text-center">
+          <a
+            href="mailto:question@voxeltox.space"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors"
           >
-            Get Early Access
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+            Discuss Our Technology
+            <ArrowRight className="w-4 h-4" />
+          </a>
         </div>
       </section>
     </main>

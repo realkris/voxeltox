@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "VoxelTox AI — 4D Spatial Intelligence for Drug Discovery",
   description:
-    "The first platform fusing World Models with LLMs for 4D dynamic drug discovery. Transforming static probability screening into deterministic spatial-temporal prediction.",
+    "VoxelTox fuses World Models with LLMs to predict molecular binding dynamics in full 4D. Replacing months of simulation with seconds of deterministic inference.",
   keywords: ["drug discovery", "AI", "world model", "LLM", "4D spatial intelligence", "molecular dynamics", "VoxelTox"],
 };
 
@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} dark`}
     >
-      <body className="min-h-screen bg-[#0a0a0f] text-[#e0e0e8] antialiased overflow-x-hidden">
+      <body className="min-h-screen bg-[#09090b] text-zinc-100 antialiased overflow-x-hidden">
         <Navbar />
         {children}
       </body>
