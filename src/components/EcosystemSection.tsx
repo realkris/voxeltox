@@ -50,7 +50,9 @@ export default function EcosystemSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {goals.map((goal, i) => (
+          {goals.map((goal, i) => {
+            const GoalIcon = goal.icon;
+            return (
             <motion.div
               key={goal.title}
               initial={{ opacity: 0, y: 30 }}
@@ -59,14 +61,15 @@ export default function EcosystemSection() {
               className="group relative flex flex-col items-center text-center p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-[#4d7cff]/20 hover:bg-white/[0.04] transition-all duration-300"
             >
               <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 bg-white/5 group-hover:bg-[#4d7cff]/10 transition-colors">
-                <goal.icon className="w-8 h-8 text-gray-400 group-hover:text-[#4d7cff] transition-colors" />
+                <GoalIcon className="w-8 h-8 text-gray-400 group-hover:text-[#4d7cff] transition-colors" />
               </div>
               <h4 className="text-lg font-semibold text-gray-200 group-hover:text-white transition-colors">
                 {goal.title}
               </h4>
               <p className="text-sm text-gray-500 mt-2">{goal.description}</p>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Partnership CTA */}

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FileText, Box, Sparkles, Brain, Atom } from "lucide-react";
+import { FileText, Sparkles, Brain, Atom } from "lucide-react";
 import Link from "next/link";
 
 function StreamCard({

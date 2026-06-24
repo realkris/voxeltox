@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, GraduationCap } from "lucide-react";
-import Link from "next/link";
+import { Github, Mail, GraduationCap } from "lucide-react";
 
 const team = [
   {

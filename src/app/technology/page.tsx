@@ -114,10 +114,12 @@ export default function TechnologyPage() {
       {/* Detailed Sections */}
       <section className="px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-20">
-          {sections.map((section, i) => (
+          {sections.map((sec, i) => {
+            const IconComp = sec.icon;
+            return (
             <motion.div
-              key={section.id}
-              id={section.id}
+              key={sec.id}
+              id={sec.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
@@ -126,32 +128,33 @@ export default function TechnologyPage() {
               <div className="flex items-center gap-4 mb-6">
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center"
-                  style={{ backgroundColor: `${section.color}15`, border: `1px solid ${section.color}30` }}
+                  style={{ backgroundColor: `${sec.color}15`, border: `1px solid ${sec.color}30` }}
                 >
-                  <section.icon className="w-6 h-6" style={{ color: section.color }} />
+                  <IconComp className="w-6 h-6" style={{ color: sec.color }} />
                 </div>
                 <div>
-                  <p className="text-xs font-mono uppercase tracking-wider" style={{ color: section.color }}>
+                  <p className="text-xs font-mono uppercase tracking-wider" style={{ color: sec.color }}>
                     Module {i + 1}
                   </p>
-                  <h2 className="text-xl md:text-2xl font-bold text-white">{section.title}</h2>
+                  <h2 className="text-xl md:text-2xl font-bold text-white">{sec.title}</h2>
                 </div>
               </div>
 
               <p className="text-gray-400 leading-relaxed mb-6 text-lg">
-                {section.description}
+                {sec.description}
               </p>
 
-              <div className="grid gap-3 pl-4 border-l-2" style={{ borderColor: `${section.color}40` }}>
-                {section.details.map((detail, j) => (
+              <div className="grid gap-3 pl-4 border-l-2" style={{ borderColor: `${sec.color}40` }}>
+                {sec.details.map((detail, j) => (
                   <div key={j} className="flex items-start gap-3">
-                    <ArrowRight className="w-4 h-4 mt-0.5 shrink-0" style={{ color: section.color }} />
+                    <ArrowRight className="w-4 h-4 mt-0.5 shrink-0" style={{ color: sec.color }} />
                     <p className="text-gray-300 text-sm">{detail}</p>
                   </div>
                 ))}
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -172,7 +175,9 @@ export default function TechnologyPage() {
               { icon: GitBranch, title: "Bi-directional Loop", desc: "LLM proposes, World Model validates — continuous self-correction eliminates false positives." },
               { icon: Cpu, title: "No Quantum Brute-Force", desc: "Learns physics from data instead of solving equations — orders of magnitude faster than MD." },
               { icon: Database, title: "Multi-Modal Native", desc: "Natively fuses 1D, 2D, 3D, 4D data — no more information loss from dimension reduction." },
-            ].map((item, i) => (
+            ].map((item, i) => {
+              const ItemIcon = item.icon;
+              return (
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -181,11 +186,12 @@ export default function TechnologyPage() {
                 transition={{ delay: i * 0.1 }}
                 className="p-6 rounded-xl border border-white/5 bg-white/[0.02] text-center"
               >
-                <item.icon className="w-8 h-8 text-[#4d7cff] mx-auto mb-3" />
+                <ItemIcon className="w-8 h-8 text-[#4d7cff] mx-auto mb-3" />
                 <h4 className="font-semibold text-white mb-2">{item.title}</h4>
                 <p className="text-sm text-gray-500">{item.desc}</p>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

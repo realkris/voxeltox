@@ -65,7 +65,9 @@ export default function BusinessModelSection() {
           <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-[#00f0ff]/50 via-[#4d7cff]/50 to-[#39ff14]/50 hidden md:block" />
 
           <div className="space-y-12">
-            {phases.map((phase, i) => (
+            {phases.map((phase, i) => {
+              const PhaseIcon = phase.icon;
+              return (
               <motion.div
                 key={phase.phase}
                 initial={{ opacity: 0, y: 30 }}
@@ -90,7 +92,7 @@ export default function BusinessModelSection() {
                     style={{ borderColor: `${phase.color}20` }}
                   >
                     <div className={`flex items-center gap-3 mb-3 ${i % 2 === 0 ? "md:justify-end" : ""}`}>
-                      <phase.icon className="w-5 h-5" style={{ color: phase.color }} />
+                      <PhaseIcon className="w-5 h-5" style={{ color: phase.color }} />
                       <span className="text-xs font-mono uppercase tracking-wider" style={{ color: phase.color }}>
                         {phase.phase} · {phase.timeline}
                       </span>
@@ -102,7 +104,8 @@ export default function BusinessModelSection() {
 
                 <div className="flex-1 hidden md:block" />
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
