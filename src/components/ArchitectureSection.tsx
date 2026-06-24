@@ -39,16 +39,6 @@ function StreamCard({
   );
 }
 
-function FlowLine({ delay, isInView }: { delay: number; isInView: boolean }) {
-  return (
-    <motion.div
-      initial={{ scaleY: 0 }}
-      animate={isInView ? { scaleY: 1 } : {}}
-      transition={{ duration: 0.5, delay }}
-      className="hidden md:block absolute left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-[#00f0ff]/60 to-transparent origin-top"
-    />
-  );
-}
 
 export default function ArchitectureSection() {
   const ref = useRef(null);
@@ -204,7 +194,6 @@ export default function ArchitectureSection() {
         </motion.div>
       </div>
 
-      <FlowLine delay={1} isInView={isInView} />
     </section>
   );
 }
