@@ -1,11 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, GraduationCap, ExternalLink } from "lucide-react";
+import { Mail, GraduationCap } from "lucide-react";
 
 const team = [
   {
-    name: "Kris",
+    name: "Tensor",
     role: "Founder & CEO",
     bio: "Leading the vision to transform drug discovery through 4D spatial intelligence. Bridging autonomous driving perception technologies with molecular dynamics to build the next-generation computational platform for deterministic lead generation.",
     expertise: [
@@ -14,9 +14,6 @@ const team = [
       "4D Spatial-Temporal Computing",
       "Drug Discovery AI",
     ],
-    links: {
-      github: "https://github.com/realkris",
-    },
   },
 ];
 
@@ -99,21 +96,6 @@ export default function TeamPage() {
                         </span>
                       ))}
                     </div>
-                  </div>
-
-                  {/* Links */}
-                  <div className="mt-6 flex items-center gap-4">
-                    {member.links.github && (
-                      <a
-                        href={member.links.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        GitHub
-                      </a>
-                    )}
                   </div>
                 </div>
               </div>

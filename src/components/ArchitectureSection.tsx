@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FileText, Sparkles, Brain, Atom } from "lucide-react";
+import { FileText, Sparkles, Brain, Atom, ScanEye } from "lucide-react";
 import Link from "next/link";
 
 function StreamCard({
@@ -72,23 +72,32 @@ export default function ArchitectureSection() {
         </motion.div>
 
         {/* Input Streams */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           <StreamCard
             icon={Brain}
-            title="1D Semantic Navigation Brain"
+            title="1D Semantic Brain"
             subtitle="LLM Engine"
-            description="Parses FASTA sequences, SMILES compound structures, and millions of biomedical papers to establish logical-semantic and functional target associations."
+            description="Parses FASTA sequences, SMILES structures, and biomedical literature for logical-semantic reasoning."
             color="#00f0ff"
             delay={0.2}
             isInView={isInView}
           />
           <StreamCard
+            icon={ScanEye}
+            title="2D Structural Vision"
+            subtitle="Vision Transformer"
+            description="Processes Cryo-EM micrographs and density maps to extract spatial features bridging 2D observations to 3D reality."
+            color="#ff6b35"
+            delay={0.35}
+            isInView={isInView}
+          />
+          <StreamCard
             icon={Atom}
-            title="4D Spatial-Temporal Prediction"
+            title="3D/4D Spatial Prediction"
             subtitle="World Model"
-            description="Voxelizes protein binding pockets into continuous spatial grids. Learns from massive structural evolution data to intuitively predict molecular occupancy changes and conformational collapse."
+            description="Voxelizes protein binding pockets into spatial grids, predicting occupancy changes and conformational dynamics."
             color="#39ff14"
-            delay={0.4}
+            delay={0.5}
             isInView={isInView}
           />
         </div>
@@ -137,9 +146,8 @@ export default function ArchitectureSection() {
               Unified High-Dimensional Latent Space
             </h3>
             <p className="text-sm text-gray-400 mt-3 max-w-lg mx-auto leading-relaxed">
-              Cross-attention mechanisms align 1D sequence logic constraints with 3D/4D spatial physical
-              constraints. The LLM &ldquo;proposes molecules&rdquo; while the World Model runs spatial collision
-              and energy stability tests in a virtual physical environment — enabling bi-directional self-correction.
+              Cross-attention mechanisms align 1D sequence logic, 2D structural features, 3D spatial geometry,
+              and 4D temporal dynamics into one unified representation — enabling bi-directional self-correction.
             </p>
           </div>
         </motion.div>

@@ -46,7 +46,7 @@ export default function FooterSection() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@pharma.com"
+                placeholder="question@voxeltox.space"
                 required
                 className="w-full px-5 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-[#00f0ff]/50 focus:ring-1 focus:ring-[#00f0ff]/30 transition-all"
               />
@@ -73,9 +73,7 @@ export default function FooterSection() {
         <div className="border-t border-white/5 pt-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00f0ff] to-[#39ff14] flex items-center justify-center">
-                <span className="text-black font-bold text-xs">VT</span>
-              </div>
+              <img src="/icon.svg" alt="VoxelTox" className="w-8 h-8" />
               <span className="font-semibold text-lg text-white">VoxelTox AI</span>
             </Link>
 

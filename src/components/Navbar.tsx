@@ -19,9 +19,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/5">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00f0ff] to-[#39ff14] flex items-center justify-center">
-            <span className="text-black font-bold text-xs">VT</span>
-          </div>
+          <img src="/icon.svg" alt="VoxelTox" className="w-8 h-8" />
           <span className="font-bold text-lg text-white">VoxelTox</span>
         </Link>
 
