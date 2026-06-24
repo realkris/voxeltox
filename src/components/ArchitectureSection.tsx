@@ -3,11 +3,13 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FileText, Image, Box, Sparkles } from "lucide-react";
+import { FileText, Box, Sparkles, Brain, Atom } from "lucide-react";
+import Link from "next/link";
 
 function StreamCard({
   icon: Icon,
   title,
+  subtitle,
   description,
   color,
   delay,
@@ -15,6 +17,7 @@ function StreamCard({
 }: {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
+  subtitle: string;
   description: string;
   color: string;
   delay: number;
@@ -33,12 +36,14 @@ function StreamCard({
       >
         <Icon className="w-7 h-7" style={{ color }} />
       </div>
-      <h4 className="text-lg font-semibold mb-2">{title}</h4>
+      <p className="text-xs uppercase tracking-wider mb-1" style={{ color }}>
+        {subtitle}
+      </p>
+      <h4 className="text-lg font-semibold mb-2 text-white">{title}</h4>
       <p className="text-sm text-gray-400 leading-relaxed">{description}</p>
     </motion.div>
   );
 }
-
 
 export default function ArchitectureSection() {
   const ref = useRef(null);
@@ -54,42 +59,36 @@ export default function ArchitectureSection() {
           className="text-center mb-20"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-[#39ff14] mb-3 font-mono">
-            System Architecture
+            Core Architecture
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold">
+          <h2 className="text-3xl md:text-5xl font-bold text-white">
             Multi-Modal Fusion{" "}
             <span className="text-[#4d7cff]">Pipeline</span>
           </h2>
-          <p className="mt-4 text-gray-400 max-w-2xl mx-auto">
-            Three distinct data streams converge in our unified latent space, enabling
-            unprecedented binding affinity prediction.
+          <p className="mt-4 text-gray-400 max-w-3xl mx-auto text-lg">
+            VoxelTox treats drug discovery as a microscopic &ldquo;panoramic perception &amp; intelligent control&rdquo; system —
+            mirroring how autonomous vehicles fuse LiDAR, cameras, and radar.
           </p>
         </motion.div>
 
         {/* Input Streams */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
           <StreamCard
-            icon={FileText}
-            title="1D Sequences & Literature"
-            description="PubMed literature, SMILES strings, and protein sequences processed by fine-tuned LLMs for deep contextual reasoning."
+            icon={Brain}
+            title="1D Semantic Navigation Brain"
+            subtitle="LLM Engine"
+            description="Parses FASTA sequences, SMILES compound structures, and millions of biomedical papers to establish logical-semantic and functional target associations."
             color="#00f0ff"
             delay={0.2}
             isInView={isInView}
           />
           <StreamCard
-            icon={Image}
-            title="2D Cryo-EM Images"
-            description="High-resolution structural imagery processed by Vision Transformers for spatial feature extraction."
+            icon={Atom}
+            title="4D Spatial-Temporal Prediction"
+            subtitle="World Model"
+            description="Voxelizes protein binding pockets into continuous spatial grids. Learns from massive structural evolution data to intuitively predict molecular occupancy changes and conformational collapse."
             color="#39ff14"
             delay={0.4}
-            isInView={isInView}
-          />
-          <StreamCard
-            icon={Box}
-            title="3D Protein Voxels"
-            description="Volumetric occupancy grids processed by World Model spatial computing for temporal dynamics."
-            color="#4d7cff"
-            delay={0.6}
             isInView={isInView}
           />
         </div>
@@ -97,53 +96,30 @@ export default function ArchitectureSection() {
         {/* Flow arrows */}
         <div className="relative flex items-center justify-center my-8">
           <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex items-center gap-2"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="flex flex-col items-center gap-2"
           >
-            <div className="hidden md:flex items-center gap-1">
-              {[...Array(3)].map((_, i) => (
+            <div className="flex items-center gap-3">
+              {[...Array(5)].map((_, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : {}}
-                  transition={{ delay: 1 + i * 0.2, duration: 0.3 }}
-                  className="w-2 h-2 rounded-full bg-[#00f0ff]"
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ delay: 1 + i * 0.1, duration: 0.3 }}
+                  className="w-2 h-2 rounded-full bg-[#4d7cff]"
                 />
               ))}
-              <motion.div
-                initial={{ width: 0 }}
-                animate={isInView ? { width: 60 } : {}}
-                transition={{ delay: 1.2, duration: 0.5 }}
-                className="h-px bg-gradient-to-r from-[#00f0ff] to-[#4d7cff]"
-              />
             </div>
             <motion.div
               initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: [0, 1, 0.8, 1] } : {}}
-              transition={{ delay: 1.5, duration: 0.5 }}
-              className="text-[#00f0ff] text-2xl"
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ delay: 1.5, duration: 0.3 }}
+              className="text-[#4d7cff] text-2xl"
             >
               ▼
             </motion.div>
-            <div className="hidden md:flex items-center gap-1">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={isInView ? { width: 60 } : {}}
-                transition={{ delay: 1.2, duration: 0.5 }}
-                className="h-px bg-gradient-to-r from-[#4d7cff] to-[#39ff14]"
-              />
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0 }}
-                  animate={isInView ? { opacity: 1 } : {}}
-                  transition={{ delay: 1 + i * 0.2, duration: 0.3 }}
-                  className="w-2 h-2 rounded-full bg-[#39ff14]"
-                />
-              ))}
-            </div>
           </motion.div>
         </div>
 
@@ -152,16 +128,18 @@ export default function ArchitectureSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.7, delay: 1.2 }}
-          className="relative mx-auto max-w-lg p-8 rounded-2xl border border-[#4d7cff]/30 bg-gradient-to-br from-[#4d7cff]/10 via-[#0a0a0f] to-[#00f0ff]/5"
+          className="relative mx-auto max-w-2xl p-8 rounded-2xl border border-[#4d7cff]/30 bg-gradient-to-br from-[#4d7cff]/10 via-[#0a0a0f] to-[#00f0ff]/5"
         >
           <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-[#00f0ff]/20 via-[#4d7cff]/20 to-[#39ff14]/20 blur-sm -z-10" />
           <div className="text-center">
             <Sparkles className="w-8 h-8 text-[#4d7cff] mx-auto mb-3" />
             <h3 className="text-xl font-bold bg-gradient-to-r from-[#00f0ff] to-[#4d7cff] bg-clip-text text-transparent">
-              Shared Latent Space
+              Unified High-Dimensional Latent Space
             </h3>
-            <p className="text-sm text-gray-400 mt-2">
-              Cross-attention mechanisms unify all modalities into a single, physics-aware representation.
+            <p className="text-sm text-gray-400 mt-3 max-w-lg mx-auto leading-relaxed">
+              Cross-attention mechanisms align 1D sequence logic constraints with 3D/4D spatial physical
+              constraints. The LLM &ldquo;proposes molecules&rdquo; while the World Model runs spatial collision
+              and energy stability tests in a virtual physical environment — enabling bi-directional self-correction.
             </p>
           </div>
         </motion.div>
@@ -185,15 +163,31 @@ export default function ArchitectureSection() {
           transition={{ duration: 0.6, delay: 2 }}
           className="mx-auto max-w-md p-6 rounded-xl border border-[#39ff14]/30 bg-[#39ff14]/5 text-center"
         >
+          <FileText className="w-6 h-6 text-[#39ff14] mx-auto mb-2" />
           <h4 className="text-lg font-bold text-[#39ff14]">
             High-Affinity Lead Compound
           </h4>
           <p className="text-sm text-gray-400 mt-2">
-            Deterministic output with binding dynamics validated against 4D spatial constraints.
+            Deterministic output validated against 4D spatial-temporal constraints
+            with conformational dynamics analysis.
           </p>
         </motion.div>
-      </div>
 
+        {/* CTA to technology page */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 2.2, duration: 0.5 }}
+          className="text-center mt-12"
+        >
+          <Link
+            href="/technology"
+            className="inline-flex items-center gap-2 text-[#00f0ff] hover:text-white transition-colors font-medium"
+          >
+            Explore full technical details →
+          </Link>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, ExternalLink } from "lucide-react";
+import { Send } from "lucide-react";
+import Link from "next/link";
 
 export default function FooterSection() {
   const ref = useRef(null);
@@ -29,8 +30,8 @@ export default function FooterSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h3 className="text-2xl md:text-3xl font-bold mb-3">
-            Get Early Access to Our API
+          <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            Get Early Access to Our Platform
           </h3>
           <p className="text-gray-400 mb-8 max-w-md mx-auto">
             Be among the first to integrate 4D spatial intelligence into your drug discovery pipeline.
@@ -71,27 +72,26 @@ export default function FooterSection() {
         {/* Footer Links */}
         <div className="border-t border-white/5 pt-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00f0ff] to-[#4d7cff] flex items-center justify-center">
-                <span className="text-black font-bold text-xs">OB</span>
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00f0ff] to-[#39ff14] flex items-center justify-center">
+                <span className="text-black font-bold text-xs">VT</span>
               </div>
-              <span className="font-semibold text-lg">OmniBind AI</span>
-            </div>
+              <span className="font-semibold text-lg text-white">VoxelTox AI</span>
+            </Link>
 
             <nav className="flex items-center gap-8">
-              <a
-                href="#architecture"
+              <Link
+                href="/technology"
                 className="text-sm text-gray-400 hover:text-white transition-colors"
               >
                 Technology
-              </a>
-              <a
-                href="#"
-                className="text-sm text-gray-400 hover:text-white transition-colors flex items-center gap-1"
+              </Link>
+              <Link
+                href="/team"
+                className="text-sm text-gray-400 hover:text-white transition-colors"
               >
-                About the Team
-                <ExternalLink className="w-3 h-3" />
-              </a>
+                Team
+              </Link>
               <a
                 href="#contact"
                 className="text-sm text-gray-400 hover:text-white transition-colors"
@@ -103,7 +103,7 @@ export default function FooterSection() {
 
           <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-gray-600">
-              © 2026 OmniBind AI. All rights reserved.
+              &copy; 2026 VoxelTox AI. All rights reserved.
             </p>
             <p className="text-xs text-gray-600 font-mono">
               voxeltox.space

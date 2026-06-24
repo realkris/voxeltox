@@ -3,23 +3,23 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Cloud, Cpu, Database } from "lucide-react";
+import { Handshake, Server, FlaskConical, Building2 } from "lucide-react";
 
-const partners = [
+const goals = [
   {
-    name: "NVIDIA Inception",
-    icon: Cpu,
-    description: "GPU-accelerated inference pipeline",
+    icon: Server,
+    title: "Compute Infrastructure",
+    description: "GPU-accelerated inference pipelines and cloud-native scalable training.",
   },
   {
-    name: "AWS for Health",
-    icon: Cloud,
-    description: "HIPAA-compliant cloud infrastructure",
+    icon: FlaskConical,
+    title: "Wet Lab Partnerships",
+    description: "Joint pipeline development with experimental validation partners.",
   },
   {
-    name: "Google Cloud AI",
-    icon: Database,
-    description: "Scalable training & model serving",
+    icon: Building2,
+    title: "Pharma Collaborations",
+    description: "Strategic IP sharing and milestone-based co-development agreements.",
   },
 ];
 
@@ -37,41 +37,52 @@ export default function EcosystemSection() {
           className="text-center mb-16"
         >
           <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-3 font-mono">
-            Strategic Partners
+            Partnerships
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Built for the Modern{" "}
-            <span className="text-[#4d7cff]">Compute Ecosystem</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Actively Seeking{" "}
+            <span className="text-[#4d7cff]">Strategic Partners</span>
           </h2>
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-lg">
+            We are open to collaborations with compute giants, cloud ecosystems, and pharmaceutical leaders
+            to accelerate the future of deterministic drug discovery.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {partners.map((partner, i) => (
+          {goals.map((goal, i) => (
             <motion.div
-              key={partner.name}
+              key={goal.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
-              className="group relative flex flex-col items-center text-center p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300"
+              className="group relative flex flex-col items-center text-center p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-[#4d7cff]/20 hover:bg-white/[0.04] transition-all duration-300"
             >
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 bg-white/5 group-hover:bg-white/10 transition-colors">
-                <partner.icon className="w-8 h-8 text-gray-400 group-hover:text-white transition-colors" />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mb-4 bg-white/5 group-hover:bg-[#4d7cff]/10 transition-colors">
+                <goal.icon className="w-8 h-8 text-gray-400 group-hover:text-[#4d7cff] transition-colors" />
               </div>
               <h4 className="text-lg font-semibold text-gray-200 group-hover:text-white transition-colors">
-                {partner.name}
+                {goal.title}
               </h4>
-              <p className="text-sm text-gray-500 mt-2">{partner.description}</p>
+              <p className="text-sm text-gray-500 mt-2">{goal.description}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Decorative line */}
+        {/* Partnership CTA */}
         <motion.div
-          initial={{ scaleX: 0 }}
-          animate={isInView ? { scaleX: 1 } : {}}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-16 h-px bg-gradient-to-r from-transparent via-[#4d7cff]/30 to-transparent"
-        />
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-16 text-center"
+        >
+          <div className="inline-flex items-center gap-3 px-6 py-4 rounded-xl border border-[#00f0ff]/20 bg-[#00f0ff]/5">
+            <Handshake className="w-5 h-5 text-[#00f0ff]" />
+            <p className="text-gray-300">
+              Seed round: <span className="text-white font-semibold">$3M – $5M</span> targeting compute assets, cloud ecosystems & strategic capital.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
