@@ -363,13 +363,31 @@ VoxelTox Unique Position:
 11. TEAM
 ================================================================================
 
-Tensor — Founder & CEO
+Tensor Zhang — Founder & Lead AI/ML Engineer
 - Background in multi-modal sensor fusion and spatial computing
 - Expertise in World Models, LLM systems, and 4D spatial-temporal prediction
 - Deep experience with GPU-accelerated computing and CUDA development
 - Vision: Apply autonomous driving perception technology to molecular space
 
-[Actively hiring: ML Engineers, Computational Biologists, Systems Architects]
+Dr. Francesco Gentile — Co-PI, Computational Chemistry
+- Assistant Professor, University of Ottawa, Department of Chemistry and Biomolecular Sciences
+- Creator of Deep Docking, an open-source deep learning framework for billion-scale virtual screening
+- Expertise: AI-accelerated drug discovery, molecular docking, GPU-accelerated screening pipelines
+- Role: Leads virtual screening methodology, chemical space exploration, and LLM-cheminformatics integration
+
+Dr. Roberto Chica — Co-PI, Protein Engineering
+- Professor, University of Ottawa, Department of Chemistry and Biomolecular Sciences
+- Expert in computational protein design, enzyme engineering, and structure-function relationships
+- Expertise: Molecular dynamics simulation, protein stability prediction, rational design
+- Role: Validates World Model conformational predictions against experimental ground truth
+
+Dr. Maria Musgaard — Co-PI, Molecular Dynamics & Biophysics
+- Computational biophysicist specializing in MD simulations of biomolecular systems
+- Research focus: Membrane protein dynamics, free-energy calculations, conformational transitions
+- Expertise: Atomistic-resolution temporal molecular behavior, enhanced sampling methods
+- Role: Provides 4D dynamics expertise, validates temporal predictions, designs MD benchmarks
+
+[Actively hiring: ML Engineers, CUDA/Systems Architects]
 
 
 12. CONTACT

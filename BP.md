@@ -309,11 +309,23 @@ Natively multi-dimensional — no information loss from dimension reduction. Cro
 
 ## 11. Team
 
-### Tensor — Founder & CEO
+### Tensor Zhang — Founder & Lead AI/ML Engineer
 
 Background in multi-modal sensor fusion and spatial computing. Deep expertise in World Models, LLM systems, GPU-accelerated computing, and CUDA development. Vision: Apply autonomous driving perception technology to molecular space.
 
-*Actively hiring: ML Engineers, Computational Biologists, CUDA/Systems Architects*
+### Dr. Francesco Gentile — Co-PI, Computational Chemistry
+
+Assistant Professor, University of Ottawa, Department of Chemistry and Biomolecular Sciences. Creator of Deep Docking, an open-source deep learning framework for billion-scale virtual screening. Expertise in AI-accelerated drug discovery, molecular docking, and GPU-accelerated screening pipelines. Leads virtual screening methodology and LLM-cheminformatics integration.
+
+### Dr. Roberto Chica — Co-PI, Protein Engineering
+
+Professor, University of Ottawa, Department of Chemistry and Biomolecular Sciences. Expert in computational protein design, enzyme engineering, and structure-function relationships. Expertise in molecular dynamics simulation and protein stability prediction. Validates World Model conformational predictions against experimental ground truth.
+
+### Dr. Maria Musgaard — Co-PI, Molecular Dynamics & Biophysics
+
+Computational biophysicist specializing in MD simulations of biomolecular systems. Research focus on membrane protein dynamics, free-energy calculations, and conformational transitions at atomistic resolution. Provides 4D dynamics expertise, validates temporal predictions, and designs MD benchmarks.
+
+*Actively hiring: ML Engineers, CUDA/Systems Architects*
 
 ---
 
