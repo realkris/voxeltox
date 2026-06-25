@@ -30,10 +30,10 @@ export default function FooterSection() {
             who share our vision for the future of drug discovery.
           </p>
           <a
-            href="mailto:question@voxeltox.space"
+            href="mailto:tzhang@voxeltox.space"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors"
           >
-            question@voxeltox.space
+            tzhang@voxeltox.space
             <ArrowRight className="w-4 h-4" />
           </a>
         </motion.div>
@@ -53,7 +53,7 @@ export default function FooterSection() {
               <Link href="/team" className="text-xs text-zinc-500 hover:text-white transition-colors">
                 Team
               </Link>
-              <a href="mailto:question@voxeltox.space" className="text-xs text-zinc-500 hover:text-white transition-colors">
+              <a href="mailto:tzhang@voxeltox.space" className="text-xs text-zinc-500 hover:text-white transition-colors">
                 Contact
               </a>
             </nav>

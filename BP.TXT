@@ -375,9 +375,8 @@ Tensor — Founder & CEO
 12. CONTACT
 ================================================================================
 
-Email:          question@voxeltox.space
+Email:          tzhang@voxeltox.space
 Website:        https://voxeltox.space
-GitHub:         https://github.com/realkris/voxeltox
 
 
 ================================================================================

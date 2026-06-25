@@ -107,7 +107,7 @@ export default function TeamPage() {
               of spatial computing, deep learning, and molecular biology.
             </p>
             <a
-              href="mailto:question@voxeltox.space"
+              href="mailto:tzhang@voxeltox.space"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />

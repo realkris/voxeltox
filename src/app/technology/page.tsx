@@ -242,7 +242,7 @@ export default function TechnologyPage() {
       <section className="px-6 py-12">
         <div className="max-w-3xl mx-auto text-center">
           <a
-            href="mailto:question@voxeltox.space"
+            href="mailto:tzhang@voxeltox.space"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors"
           >
             Discuss Our Technology
@@ -368,7 +368,7 @@ export default function TechnologyPage() {
       <section className="px-6 py-12">
         <div className="max-w-3xl mx-auto text-center">
           <a
-            href="mailto:question@voxeltox.space"
+            href="mailto:tzhang@voxeltox.space"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors"
           >
             Discuss a Partnership

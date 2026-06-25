@@ -321,9 +321,8 @@ Background in multi-modal sensor fusion and spatial computing. Deep expertise in
 
 | | |
 |---|---|
-| **Email** | question@voxeltox.space |
+| **Email** | tzhang@voxeltox.space |
 | **Website** | https://voxeltox.space |
-| **GitHub** | https://github.com/realkris/voxeltox |
 
 ---
 

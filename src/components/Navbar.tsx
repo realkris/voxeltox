@@ -34,7 +34,7 @@ export default function Navbar() {
             </Link>
           ))}
           <a
-            href="mailto:question@voxeltox.space"
+            href="mailto:tzhang@voxeltox.space"
             className="px-4 py-1.5 text-[13px] bg-white text-black font-medium rounded-md hover:bg-zinc-200 transition-colors"
           >
             Contact Us

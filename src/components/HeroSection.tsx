@@ -65,7 +65,7 @@ export default function HeroSection() {
             <ArrowRight className="w-4 h-4" />
           </Link>
           <a
-            href="mailto:question@voxeltox.space"
+            href="mailto:tzhang@voxeltox.space"
             className="flex items-center gap-2 px-6 py-3 border border-white/[0.12] text-sm text-zinc-300 font-medium rounded-lg hover:bg-white/[0.04] transition-colors"
           >
             Schedule a Conversation
