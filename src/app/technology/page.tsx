@@ -250,6 +250,132 @@ export default function TechnologyPage() {
           </a>
         </div>
       </section>
+
+      {/* GPU Compute Infrastructure */}
+      <section className="px-6 py-16">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 mb-3">Infrastructure</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              GPU-Accelerated from the Ground Up
+            </h2>
+            <p className="mt-3 text-zinc-400 leading-relaxed">
+              Every component of VoxelTox is designed for massively parallel GPU execution — from custom CUDA kernels
+              for voxelization to TensorRT-optimized inference.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="p-6 rounded-xl border border-white/[0.06] bg-white/[0.015] space-y-4"
+          >
+            {[
+              { label: "Training", value: "Multi-GPU distributed (H100), mixed-precision BF16, FSDP/DeepSpeed" },
+              { label: "Inference", value: "TensorRT-optimized, sub-second 4D occupancy prediction" },
+              { label: "Data Pipeline", value: "Custom CUDA kernels, RAPIDS-accelerated preprocessing" },
+              { label: "Frameworks", value: "PyTorch, CUDA-X (cuBLAS, cuFFT, cuDNN), Triton serving" },
+            ].map((row) => (
+              <div key={row.label} className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                <span className="text-xs text-zinc-500 sm:w-28 shrink-0">{row.label}</span>
+                <span className="text-sm text-zinc-300">{row.value}</span>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Datasets */}
+      <section className="px-6 py-16">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <p className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 mb-3">Data</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              Clearly Defined Datasets
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid sm:grid-cols-2 gap-3"
+          >
+            {[
+              { name: "PDB", desc: "220K experimental structures", type: "3D" },
+              { name: "EMDB", desc: "40K Cryo-EM maps", type: "2D" },
+              { name: "ChEMBL", desc: "2.4M+ bioactive compounds", type: "1D" },
+              { name: "PubMed", desc: "36M+ research papers", type: "1D" },
+              { name: "AlphaFold DB", desc: "200M predicted structures", type: "3D" },
+              { name: "MoDEL / mdCATH", desc: "Curated MD trajectories", type: "4D" },
+            ].map((ds) => (
+              <div key={ds.name} className="p-4 rounded-lg border border-white/[0.06] bg-white/[0.015] flex items-center gap-3">
+                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded border border-white/10 text-zinc-400">{ds.type}</span>
+                <div>
+                  <p className="text-sm font-medium text-white">{ds.name}</p>
+                  <p className="text-xs text-zinc-500">{ds.desc}</p>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Open Source */}
+      <section className="px-6 py-16">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="p-6 rounded-xl border border-emerald-500/10 bg-emerald-500/[0.02]"
+          >
+            <h3 className="text-base font-semibold text-white mb-3">Open-Source Commitment</h3>
+            <ul className="space-y-2 text-sm text-zinc-400">
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 mt-0.5">&bull;</span>
+                Core voxelization CUDA kernels — planned open-source release
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 mt-0.5">&bull;</span>
+                Benchmark datasets for 4D molecular occupancy prediction
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 mt-0.5">&bull;</span>
+                Pretrained model checkpoints for academic research
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-emerald-400 mt-0.5">&bull;</span>
+                Papers targeting NeurIPS, ICML, ICLR venues
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="px-6 py-12">
+        <div className="max-w-3xl mx-auto text-center">
+          <a
+            href="mailto:question@voxeltox.space"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-medium rounded-lg hover:bg-zinc-200 transition-colors"
+          >
+            Discuss a Partnership
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
+      </section>
     </main>
   );
 }

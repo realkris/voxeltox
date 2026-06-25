@@ -83,7 +83,27 @@ and HD maps (semantic) into a single world representation.
 ================================================================================
 
 VoxelTox breaks traditional single-modality limitations by treating drug
-discovery as a microscopic "panoramic perception and intelligent control" system:
+discovery as a microscopic "panoramic perception and intelligent control" system.
+
+3.0 GPU-Accelerated Computing Foundation
+
+The entire VoxelTox pipeline is built on GPU-accelerated infrastructure:
+
+- Training: Multi-GPU distributed training on H100/A100 clusters using
+  mixed-precision (FP16/BF16) and FSDP/DeepSpeed for model parallelism
+- Inference: Optimized with TensorRT for sub-second 4D occupancy prediction
+- Data Pipeline: CUDA-accelerated voxelization and point cloud processing
+  using custom CUDA kernels and cuDNN primitives
+- Frameworks: PyTorch (primary), CUDA-X libraries (cuBLAS, cuFFT, cuDNN),
+  RAPIDS for data preprocessing, Triton for inference serving
+
+Estimated Compute Requirements:
+- World Model training: ~20,000 H100 GPU-hours per full training cycle
+- LLM fine-tuning: ~5,000 H100 GPU-hours
+- Vision Transformer training: ~8,000 H100 GPU-hours
+- Inference (production): 4× A100/H100 for real-time 4D prediction
+
+3.1 Architecture Overview
 
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                                                                         │
@@ -106,148 +126,212 @@ discovery as a microscopic "panoramic perception and intelligent control" system
 │                                                                         │
 └─────────────────────────────────────────────────────────────────────────┘
 
-3.1 Module 1: 1D Semantic Navigation Brain (LLM)
+3.2 Module 1: 1D Semantic Navigation Brain (LLM)
 
 Role: Parse and understand biological macromolecular sequences, compound
 structures, and global biomedical literature.
 
-Capabilities:
-- Processes FASTA protein sequences and SMILES chemical notation
-- Ingests millions of PubMed papers for contextual reasoning
-- Establishes logical-semantic associations between functional targets
-- Proposes candidate molecules based on learned biochemical principles
-- Serves as the "hypothesis generation" layer
+Implementation:
+- Base: Fine-tuned from pretrained foundation models (Llama/Mistral class)
+- Training: Multi-GPU LoRA/QLoRA fine-tuning on domain-specific corpora
+- Inference: Quantized (INT8/FP8) via TensorRT-LLM for production speed
+- Capabilities:
+  * Processes FASTA protein sequences and SMILES chemical notation
+  * Ingests millions of PubMed papers for contextual reasoning
+  * Establishes logical-semantic associations between functional targets
+  * Proposes candidate molecules based on learned biochemical principles
 
-3.2 Module 2: 2D Structural Image Understanding (Vision Transformer)
+3.3 Module 2: 2D Structural Image Understanding (Vision Transformer)
 
 Role: Extract spatial features from Cryo-EM microscopy data, bridging 2D
 observations to 3D structural understanding.
 
-Capabilities:
-- Processes raw Cryo-EM micrographs and 2D density maps
-- Hierarchical spatial feature extraction via Vision Transformers
-- Resolves sub-angstrom structural details invisible to sequence-only methods
-- Provides 2D → 3D reconstruction priors for the World Model
-- Leverages rapidly growing Cryo-EM repositories (EMDB)
+Implementation:
+- Base: Pretrained ViT/DINOv2 adapted for electron microscopy domain
+- Training: GPU-accelerated fine-tuning on EMDB dataset
+- Pipeline: CUDA-accelerated image preprocessing and augmentation
+- Capabilities:
+  * Processes raw Cryo-EM micrographs and 2D density maps
+  * Hierarchical spatial feature extraction via Vision Transformers
+  * Resolves sub-angstrom structural details invisible to sequence methods
+  * Provides 2D → 3D reconstruction priors for the World Model
 
-3.3 Module 3: 3D/4D Spatial-Temporal Micro-Environment (World Model)
+3.4 Module 3: 3D/4D Spatial-Temporal Micro-Environment (World Model)
 
 Role: Voxelize protein binding pockets into continuous spatial grids and predict
 molecular dynamics without brute-force quantum calculations.
 
-Capabilities:
-- Converts binding pockets into continuous spatial voxel grids
-- Learns from massive structural evolution datasets (PDB, UniProt)
-- Predicts molecular spatial occupancy changes over time (3D → 4D)
-- Models conformational collapse and induced-fit dynamics
-- Validates LLM proposals via spatial collision & energy stability testing
+Implementation:
+- Architecture: 3D U-Net backbone with temporal attention (custom)
+- Voxelization: Custom CUDA kernels for real-time point cloud → voxel grid
+- Training: Physics-informed loss functions on GPU-accelerated pipelines
+- Inference: TensorRT-optimized for real-time 4D occupancy forecasting
+- Capabilities:
+  * Converts binding pockets into continuous spatial voxel grids
+  * Learns from massive structural evolution datasets (PDB, UniProt)
+  * Predicts molecular spatial occupancy changes over time (3D → 4D)
+  * Models conformational collapse and induced-fit dynamics
+  * Validates LLM proposals via spatial collision & energy stability testing
 
 Key Insight: The World Model does NOT solve quantum chemistry equations.
 Instead, it learns physical behavior from data — developing an "intuition"
-for molecular dynamics, analogous to how a human expert develops physical
-intuition through years of observation.
+for molecular dynamics through physics-informed machine learning.
 
-3.4 Module 4: Unified Feature Alignment (Sensor Fusion)
+3.5 Module 4: Unified Feature Alignment (Sensor Fusion)
 
 Role: Cross-attention mechanisms map all four data dimensions into a shared
 Latent Space, enabling full-spectrum bi-directional reasoning.
 
-Capabilities:
-- Cross-attention alignment across 1D/2D/3D/4D representations
-- Shared latent space enables holistic reasoning impossible for any single modality
-- LLM proposes → Vision verifies → World Model validates → loop refines
-- Achieves deterministic prediction rather than probabilistic screening
+Implementation:
+- Multi-head cross-attention with learned positional encodings per modality
+- Distributed training across multi-GPU clusters for large embedding spaces
+- Capabilities:
+  * Cross-attention alignment across 1D/2D/3D/4D representations
+  * Shared latent space enables holistic reasoning
+  * LLM proposes → Vision verifies → World Model validates → loop refines
+  * Achieves deterministic prediction rather than probabilistic screening
 
 
-4. KEY TECHNICAL DIFFERENTIATORS
+4. DATASETS
 ================================================================================
 
-4.1 Bi-directional Self-Correction Loop
+VoxelTox leverages clearly defined, publicly available datasets augmented with
+proprietary processing pipelines:
+
+4.1 Structural Data
+- Protein Data Bank (PDB): ~220,000 experimentally determined structures
+- AlphaFold Protein Structure Database: ~200M predicted structures
+- UniProt: Sequence and functional annotation for 250M+ proteins
+
+4.2 Microscopy Data
+- Electron Microscopy Data Bank (EMDB): ~40,000 Cryo-EM maps
+- EMPIAR: Raw electron microscopy image archives
+
+4.3 Chemical & Pharmacological Data
+- ChEMBL: 2.4M+ compounds with bioactivity data
+- ZINC Database: 230M+ commercially available compounds
+- PubChem: 111M+ chemical structures
+
+4.4 Literature & Sequence Data
+- PubMed/MEDLINE: 36M+ biomedical research papers
+- UniRef: Clustered protein sequence databases
+- SMILES/FASTA: Standardized molecular & protein representations
+
+4.5 Dynamics & Trajectory Data
+- MoDEL: Molecular Dynamics Extended Library
+- D.E. Shaw Research trajectory datasets
+- mdCATH: Curated MD simulation database
+
+All datasets are preprocessed using GPU-accelerated RAPIDS pipelines for
+efficient loading during distributed training.
+
+
+5. KEY TECHNICAL DIFFERENTIATORS
+================================================================================
+
+5.1 Bi-directional Self-Correction Loop
 
 Unlike linear pipelines (generate once → output), VoxelTox implements a
 closed-loop between reasoning (LLM) and simulation (World Model):
 
     LLM(propose) → WorldModel(simulate) → feedback → LLM(refine) → converge
 
-- The LLM generates candidates from semantic understanding
-- The World Model simulates each candidate in 4D micro-environment
-- Failure signals feed back as structured constraints
-- Loop repeats until physics-grounded stability is confirmed
-
 Result: False positive rates drop by orders of magnitude. Only molecules that
 survive spatial-temporal simulation reach the pipeline.
 
-4.2 Learned Physics (No Quantum Brute-Force)
+5.2 Learned Physics via Physics-Informed ML (No Quantum Brute-Force)
 
 Traditional MD: Solve Schrödinger equations for every atom at every timestep.
-VoxelTox: Learn molecular behavior from millions of observed transitions.
+VoxelTox: Learn molecular behavior from millions of observed transitions using
+physics-informed neural networks on GPU clusters.
 
 Performance comparison:
 - Traditional MD (microsecond):      Days to Weeks
 - AlphaFold (single structure):      Minutes (static only, no dynamics)
 - VoxelTox (full 4D dynamics):       Seconds to Minutes
 
-The World Model predicts WHERE atoms will be — not HOW they got there.
-Occupancy forecasting replaces trajectory integration.
+5.3 Architecturally Multi-Modal (1D + 2D + 3D + 4D)
 
-4.3 Architecturally Multi-Modal (1D + 2D + 3D + 4D)
+Most approaches collapse high-dimensional data to fit single-modality models.
+VoxelTox is natively multi-dimensional — no information loss from dimension
+reduction. Cross-modal correlations captured that are invisible to any single
+data type.
 
-Most approaches collapse high-dimensional data to fit single-modality models
-(e.g., reducing 3D structures to 1D fingerprints), losing spatial information
-irreversibly.
+5.4 Open-Source Commitment
 
-VoxelTox is natively multi-dimensional:
-- No dimension reduction → no information loss
-- Cross-modal correlations captured that are invisible to any single data type
-- Analogous to autonomous driving: cameras + LiDAR + radar > cameras alone
+VoxelTox is committed to contributing back to the research community:
+- Core voxelization CUDA kernels: planned open-source release
+- Benchmark datasets for 4D molecular occupancy prediction
+- Pretrained model checkpoints for academic research use
+- Technical papers submitted to NeurIPS, ICML, ICLR venues
 
 
-5. BUSINESS MODEL
+6. PROJECT TIMELINE & MILESTONES
 ================================================================================
 
-5.1 Phase 1: Compute SaaS Platform (Year 1–2)
+Phase 1: Foundation (Month 1–6)
+- Data pipeline construction (GPU-accelerated preprocessing)
+- World Model v1 architecture design and initial training
+- LLM domain fine-tuning on biomedical corpus
+- Milestone: Proof-of-concept on known protein-ligand pairs
 
+Phase 2: Integration (Month 7–12)
+- Vision Transformer adaptation for Cryo-EM domain
+- Cross-attention fusion layer development
+- Bi-directional loop implementation
+- Milestone: End-to-end pipeline on benchmark datasets
+
+Phase 3: Validation (Month 13–18)
+- Large-scale training on full dataset corpus
+- Inference optimization (TensorRT, quantization)
+- Validation against experimental binding data
+- Milestone: Publication-ready results, first customer pilot
+
+Phase 4: Production (Month 19–24)
+- Production deployment with optimized inference serving
+- SaaS platform launch for pharma partners
+- Milestone: Revenue-generating customer engagements
+
+Estimated Total Compute: ~35,000–50,000 H100 GPU-hours over 24 months
+
+
+7. BUSINESS MODEL
+================================================================================
+
+7.1 Phase 1: Compute SaaS Platform (Year 1–2)
 - High-precision 4D dynamic virtual screening as a service
 - Target: Top pharma companies and research institutions
-- Objective: Validate technology closed loop with paying customers
 - Revenue: Subscription + per-computation pricing
 
-5.2 Phase 2: Joint Pipeline Development (Year 2–4)
-
-- Partner with wet-lab organizations for experimental validation
-- Co-develop lead compounds with shared IP
+7.2 Phase 2: Joint Pipeline Development (Year 2–4)
+- Co-develop lead compounds with wet-lab partners, shared IP
 - Revenue: Milestone payments + downstream royalties
-- Value: Platform-validated leads have higher clinical success probability
 
-5.3 Phase 3: Platform Licensing (Year 4+)
-
+7.3 Phase 3: Platform Licensing (Year 4+)
 - License VoxelTox as industry-standard spatial prediction engine
-- Global pharma R&D organizations as customers
 - Revenue: Platform licensing fees + API access
-- Moat: Network effects from accumulated training data
 
 
-6. FUNDRAISING
+8. FUNDRAISING
 ================================================================================
 
 Round:          Seed
 Amount:         $3,000,000 – $5,000,000
-Target:         Strategic investors aligned with deep-tech AI + healthcare
 
 Use of Funds:
-- 40%  Compute infrastructure (GPU clusters, training)
+- 40%  GPU compute infrastructure (cloud GPU hours, cluster access)
 - 30%  R&D team expansion (ML engineers, computational biologists)
 - 20%  Data acquisition and partnerships
 - 10%  Operations and legal
 
 What We Seek Beyond Capital:
-- GPU/compute asset access (cloud credits, dedicated clusters)
+- GPU/compute asset access (cloud credits, dedicated H100 clusters)
 - Cloud ecosystem integration and go-to-market support
 - Introductions to pharma R&D decision-makers
 - Scientific advisory connections
 
 
-7. COMPETITIVE LANDSCAPE
+9. COMPETITIVE LANDSCAPE
 ================================================================================
 
 Competitor              | Approach                    | Limitation
@@ -262,21 +346,33 @@ VoxelTox Unique Position:
 - Only platform combining LLM reasoning + World Model physics simulation
 - Only platform natively fusing 1D/2D/3D/4D data
 - Only platform with bi-directional self-correction architecture
-- Orders of magnitude faster than MD-based approaches
+- GPU-native from ground up — designed for accelerated computing at scale
+- Committed to open-source contributions and academic collaboration
 
 
-8. TEAM
+10. SOCIAL IMPACT
+================================================================================
+
+- Accelerating drug discovery reduces time-to-market for life-saving treatments
+- Reducing clinical trial failure rates lowers healthcare costs globally
+- Open-source contributions advance the broader scientific computing community
+- Democratizing access to 4D molecular prediction for academic researchers
+- Potential applications in neglected tropical diseases and rare disease research
+
+
+11. TEAM
 ================================================================================
 
 Tensor — Founder & CEO
 - Background in multi-modal sensor fusion and spatial computing
 - Expertise in World Models, LLM systems, and 4D spatial-temporal prediction
+- Deep experience with GPU-accelerated computing and CUDA development
 - Vision: Apply autonomous driving perception technology to molecular space
 
 [Actively hiring: ML Engineers, Computational Biologists, Systems Architects]
 
 
-9. CONTACT
+12. CONTACT
 ================================================================================
 
 Email:          question@voxeltox.space
@@ -286,5 +382,5 @@ GitHub:         https://github.com/realkris/voxeltox
 
 ================================================================================
                     CONFIDENTIAL — DO NOT DISTRIBUTE
-                         © 2026 VoxelTox AI (沃森生科)
+                    © 2026 VoxelTox AI (沃森生科)
 ================================================================================
